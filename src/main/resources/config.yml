@@ -1,0 +1,14 @@
+serverName: "LangweilerMC"
+money: €
+ranks: [owner,admin,player]
+rankDisplay:
+  owner: Owner
+  admin: Admin
+  player: Player
+messages:
+  wrongAmountArguments: Falsche Anzahl an Argumenten.
+  playerNotOnline: Dieser Spieler ist gerade nicht online.
+  rankDoesNotExist: Dieser Rang existiert nicht.
+  tooLessMoney: Du hast nicht genug Geld.
+  notPlayer: Du musst ein Spieler sein um diesen Befehl auszuführen.
+savefile: scoreboard

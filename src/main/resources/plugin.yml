@@ -1,0 +1,27 @@
+name: Scoreboard
+version: '${project.version}'
+main: de.lundlucenany9.scoreboard.Scoreboard
+api-version: '1.19'
+commands:
+  rank:
+    description: Gives a player a rank.
+    usage: /rank <Player> <Rank>
+    permission: scoreboard.rank
+  pay:
+    description: Pay money to somebody.
+    usage: /pay <Player> <Money>
+    permission: scoreboard.pay
+  eco:
+    description: gives, removes money from a player
+    usage: /eco <Player> <add|take|set> <Money>
+    permission: scoreboard.eco
+permissions:
+  scoreboard.rank:
+    description: The permission to use the rank command.
+    default: op
+  scoreboard.pay:
+    description: The permission to use the pay command.
+    default: true
+  scoreboard.eco:
+    description: The permission to use the eco command.
+    default: op

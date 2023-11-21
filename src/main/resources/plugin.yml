@@ -13,8 +13,15 @@ commands:
     permission: scoreboard.pay
   eco:
     description: gives, removes money from a player
-    usage: /eco <Player> <add|take|set> <Money>
+    usage: /eco <Player> <add|take|set|get> <Money>
     permission: scoreboard.eco
+  get:
+    usage: /get <Player>
+    permission: scoreboard.get
+  job:
+    usage: /job [Player] [Job]
+    description: Sezt oder zeigt den Job eines Spielers.
+    permission: scoreboard.job
 permissions:
   scoreboard.rank:
     description: The permission to use the rank command.
@@ -24,4 +31,12 @@ permissions:
     default: true
   scoreboard.eco:
     description: The permission to use the eco command.
+    default: op
+  scoreboard.get:
+    default: op
+  scoreboard.job:
+    default: true
+  scoreboard.job.other:
+    default: op
+  scoreboard.job.other.change:
     default: op

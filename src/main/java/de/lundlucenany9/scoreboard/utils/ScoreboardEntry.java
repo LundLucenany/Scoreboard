@@ -9,6 +9,9 @@ public class ScoreboardEntry implements Serializable {
     private static final long serialVersionUID = 1L;
     public ScoreboardEntry(String rang){
         this.rang = rang;
+        this.money = 0;
+        this.deaths = 0;
+        this.job = "None";
     }
 
     public ScoreboardEntry(String rang, float money, int deaths, String job) {
@@ -44,6 +47,7 @@ public class ScoreboardEntry implements Serializable {
     public void setDeaths(int deaths) {
         this.deaths = deaths;
     }
+    public void changeDeaths(int deaths) {this.deaths += deaths;}
 
     public String getJob() {
         return job;

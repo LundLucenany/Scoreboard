@@ -30,12 +30,12 @@ public class PayCommand implements CommandExecutor, TabCompleter {
             return false;
         }
         Player target = Bukkit.getPlayer(args[0]);
-        if(Scoreboard.scoreboardList.get(p.getUniqueId()).getMoney() < money){
+        if(Scoreboard.scoreboardList.get(p.getUniqueId().toString()).getMoney() < money){
             sender.sendMessage(Scoreboard.mTooLessMoney);
             return false;
         }
-        Scoreboard.scoreboardList.get(p.getUniqueId()).changeMoney(-money);
-        Scoreboard.scoreboardList.get(target.getUniqueId()).changeMoney(money);
+        Scoreboard.scoreboardList.get(p.getUniqueId().toString()).changeMoney(-money);
+        Scoreboard.scoreboardList.get(target.getUniqueId().toString()).changeMoney(money);
         new OnJoinListener().updateEntrys(p);
         new OnJoinListener().updateEntrys(target);
         return true;

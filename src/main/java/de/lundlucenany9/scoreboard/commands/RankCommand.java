@@ -29,8 +29,8 @@ public class RankCommand implements CommandExecutor, TabCompleter {
             return false;
         }
         Player target = Bukkit.getPlayer(args[0]);
-        if(Scoreboard.scoreboardList.containsKey(target.getUniqueId())){
-            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId());
+        if(Scoreboard.scoreboardList.containsKey(target.getUniqueId().toString())){
+            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId().toString());
             if(args.length == 1){
                 cmdsender.sendMessage("Rang von " + target.getDisplayName() + ": "  + entry.getRang());
                 return true;
@@ -38,7 +38,7 @@ public class RankCommand implements CommandExecutor, TabCompleter {
                 entry.setRang(Scoreboard.ranks.get(args[1]));
                 new OnJoinListener().updateEntrys(target);
                 cmdsender.sendMessage("Rang von " + target.getDisplayName() + " ist jetzt " + entry.getRang());
-                Scoreboard.scoreboardList.replace(target.getUniqueId(), entry);
+                Scoreboard.scoreboardList.replace(target.getUniqueId().toString(), entry);
                 return true;
             }
 

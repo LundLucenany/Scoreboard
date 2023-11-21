@@ -30,16 +30,23 @@ public class OnJoinListener implements Listener {
             team.addEntry(genEntry(i));
         }
         sidebar.setDisplayName(Scoreboard.serverName);
-        if(Scoreboard.scoreboardList.get(p.getUniqueId()) == null) {
+        if(Scoreboard.scoreboardList.containsKey(p.getUniqueId().toString())){
+            ScoreboardEntry entry = Scoreboard.get(p);
+            setSlot(4, "Rang: " + entry.getRang());
+            setSlot(3, "Money: §2" + entry.getMoney() + Scoreboard.money);
+            setSlot(2, "Tode: §4" + entry.getDeaths());
+            setSlot(1, "Job: §1"+ entry.getJob());
+            p.setScoreboard(scoreboard);
+        } else {
             ScoreboardEntry entry = new ScoreboardEntry(Scoreboard.ranks.get("player"), 0f, 0, "None");
-            Scoreboard.scoreboardList.put(p.getUniqueId(), entry);
+            Scoreboard.scoreboardList.put(p.getUniqueId().toString(), entry);
+            setSlot(4, "Rang: " + entry.getRang());
+            setSlot(3, "Money: §2" + entry.getMoney() + Scoreboard.money);
+            setSlot(2, "Tode: §4" + entry.getDeaths());
+            setSlot(1, "Job: §1"+ entry.getJob());
+            p.setScoreboard(scoreboard);
         }
-        ScoreboardEntry entry = Scoreboard.scoreboardList.get(p.getUniqueId());
-        setSlot(4, "Rang: " + entry.getRang());
-        setSlot(3, "Money: §2" + entry.getMoney() + Scoreboard.money);
-        setSlot(2, "Tode: §4" + entry.getDeaths());
-        setSlot(1, "Job: §1"+ entry.getJob());
-        p.setScoreboard(scoreboard);
+
     }
     private String genEntry(int slot) {
         return ChatColor.values()[slot].toString();

@@ -17,12 +17,10 @@ import java.util.Objects;
 public class EcoCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        sender.sendMessage("1");
         if(args.length != 3){
             sender.sendMessage(Scoreboard.mWrongArguments);
             return false;
         }
-        sender.sendMessage("2");
         if(!Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(args[0]))){
             sender.sendMessage(Scoreboard.mPlayerNotOnline);
             return false;
@@ -30,29 +28,29 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
         Player target = Bukkit.getPlayer(args[0]);
         sender.sendMessage(target.getDisplayName());
         if(Objects.equals(args[1], "add")){
-            sender.sendMessage("add");
-            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId());
+            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId().toString());
             entry.changeMoney(Float.parseFloat(args[2]));
-            Scoreboard.scoreboardList.replace(target.getUniqueId(), entry);
+            Scoreboard.scoreboardList.replace(target.getUniqueId().toString(), entry);
             sender.sendMessage("Das Geld von " + target.getDisplayName() + " ist jetzt " + entry.getMoney());
             new OnJoinListener().updateEntrys(target);
             return true;
         } else if (Objects.equals(args[1], "take")) {
-            sender.sendMessage("take");
-            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId());
+            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId().toString());
             entry.changeMoney(-Float.parseFloat(args[2]));
-            Scoreboard.scoreboardList.replace(target.getUniqueId(), entry);
+            Scoreboard.scoreboardList.replace(target.getUniqueId().toString(), entry);
             sender.sendMessage("Das Geld von " + target.getDisplayName() + " ist jetzt " + entry.getMoney());
             new OnJoinListener().updateEntrys(target);
             return true;
         } else if (Objects.equals(args[1], "set")) {
-            sender.sendMessage("set");
-            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId());
+            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId().toString());
             entry.setMoney(Float.parseFloat(args[2]));
-            Scoreboard.scoreboardList.replace(target.getUniqueId(), entry);
+            Scoreboard.scoreboardList.replace(target.getUniqueId().toString(), entry);
             sender.sendMessage("Das Geld von " + target.getDisplayName() + " ist jetzt " + entry.getMoney());
             new OnJoinListener().updateEntrys(target);
             return true;
+        } else if (Objects.equals(args[1], "get")) {
+            ScoreboardEntry entry = Scoreboard.scoreboardList.get(target.getUniqueId().toString());
+            sender.sendMessage("Das Geld von " + target.getDisplayName() + " ist aktuell " + entry.getMoney());
         }
         return false;
     }
@@ -72,6 +70,7 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
             back.add("add");
             back.add("take");
             back.add("set");
+            back.add("get");
             return back;
         }
         return null;

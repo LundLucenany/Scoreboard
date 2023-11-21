@@ -36,7 +36,11 @@ permissions:
     default: op
   scoreboard.job:
     default: true
+    children:
+      - scoreboard.job.other
   scoreboard.job.other:
     default: op
+    children:
+      - scoreboard.job.other.change: false
   scoreboard.job.other.change:
     default: op
